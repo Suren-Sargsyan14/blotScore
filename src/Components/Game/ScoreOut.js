@@ -7,7 +7,7 @@ import { TextBold } from '../../UI';
 
 const ScoreOut = ({
   onPress,
-  title = 'Միավորներ Դրսից',
+  title = 'Միավորներ Դրսից g',
 }) => {
   return (
     <TouchableOpacity
