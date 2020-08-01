@@ -1,19 +1,22 @@
 import React from 'react';
-import { TouchableOpacity, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 
-import ScoreIcon from '../../assets/images/score.png';
+import styles from './startNewGame.style';
 
-import styles from './scoreOut.style';
+import { TextBold } from '../../UI';
 
 const ScoreOut = ({
   onPress,
+  title,
 }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={styles.openButton}
     >
-      <Image source={ScoreIcon} style={{width: 40, height: 40}} />
+      <TextBold center>
+        {title}
+      </TextBold>
     </TouchableOpacity>
   )
 };

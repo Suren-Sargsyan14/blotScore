@@ -4,8 +4,6 @@ import {COLORS} from "../../UI";
 
 export default StyleSheet.create({
   openButton: {
-    flexDirection: "row",
-    justifyContent: "center",
     padding: 10,
     elevation: 2,
     borderRadius: 5,

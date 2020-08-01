@@ -1,23 +1,16 @@
 import React, { useState } from 'react';
 import {
-  Text,
   View,
-  Image,
-  Dimensions,
-  ScrollView,
-  SafeAreaView,
-  ImageBackground,
-  TouchableOpacity,
 } from 'react-native';
 
-import { AppContainer } from '../UI';
+import { AppContainer, TextRegular } from '../UI';
 
 import TeamNameModal from '../Components/TeamNameModal';
 import TeamScoreModal from '../Components/TeamScoreModal';
 import TeamXModal from '../Components/TeamXModal';
 import TeamScoreOutModal from '../Components/TeamScoreOutModal';
 
-import { GameTitle, ScoreOut } from '../Components';
+import {GameTitle, ScoreOut, TeamName, TeamScores, Line, TeamFinalScore, StartNewGame } from '../Components';
 
 import style from '../Styles/game.screen.style';
 
@@ -27,8 +20,6 @@ import diamonds from '../assets/images/diamonds.png';
 import hearts from '../assets/images/hearts.png';
 import spades from '../assets/images/spades.png';
 import High from '../assets/images/High.png';
-
-const { height, width } = Dimensions.get('window');
 
 const Game = () => {
   const [whichTeam, setWhichTeam] = useState(0);
@@ -49,7 +40,35 @@ const Game = () => {
   const openScoreOutModal = team => {
     setModalScoreOutVisible(true);
     setWhichTeam(team);
-  }
+  };
+  const openNameModal = team => {
+    setModalNameVisible(true);
+    setWhichTeam(team);
+  };
+  const openTeamScoreModal = (team, teamScore, teamVs, index) => {
+    if (teamVs[teamVs.length - 1].x === 0 || index !== teamScore.length - 1) {
+      return;
+    }
+    setModalScoreVisible(true);
+    setWhichTeam(team);
+  };
+  const openXModal = (index) => {
+    console.log(index, teamVs);
+    if (index !== teamVs.length - 1) {
+      return;
+    }
+    setModalXVisible(true);
+    setWhichTeam(0);
+  };
+  const startNewGame = () => {
+    setTeam1('Մենք');
+    setTeam2('Դուք');
+    setTeamScore1([0]);
+    setTeamVs([{ team: -1, x: 0, suit: -1, kaput: false, quanche: false, sharp: false }]);
+    setTeamScore2([0]);
+    setTeamScoreOut1([]);
+    setTeamScoreOut2([]);
+  };
 
   return (
     <AppContainer
@@ -57,108 +76,51 @@ const Game = () => {
       barStyle="light-bar"
       imageBackground={backgroundImage}
     >
-        <ScrollView>
+        <View>
           <GameTitle title="Բլոտի Հաշիվ" />
           <View style={style.teamContainer}>
             <View style={style.teams}>
               <ScoreOut onPress={() => openScoreOutModal(0)} />
-              <TouchableOpacity onPress={() => {
-                setModalNameVisible(true);
-                setWhichTeam(0);
-              }}>
-                <Text style={style.teamText}>{team1}</Text>
-              </TouchableOpacity>
-              {teamScore1.map((v, i) => (
-                <TouchableOpacity key={i} onPress={() => {
-                  if (teamVs[teamVs.length - 1].x === 0 || i !== teamScore1.length - 1) {
-                    return;
-                  }
-                  setModalScoreVisible(true);
-                  setWhichTeam(0);
-                }}>
-                  <Text style={style.teamText}>{v}</Text>
-                </TouchableOpacity>
-              ))}
+              <TeamName
+                onPress={() => openNameModal(0)}
+                title={team1}
+              />
             </View>
             <View style={style.vs}>
-              <Text style={style.vsText}>vs</Text>
-              {teamVs.map((v, i) => (
-                <TouchableOpacity
-                  key={i}
-                  onPress={() => {
-                    if (i !== teamVs.length - 1) {
-                      return;
-                    }
-                    setModalXVisible(true);
-                    setWhichTeam(0);
-                  }}
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, .3)",
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "space-around",
-                  }}
-                >
-                  <Text style={style.vsText}>{v.x}</Text>
-                  <Image source={suits[v.suit]}
-                         style={[{ width: 30, height: 30 }, { display: (v.suit === -1 ? "none" : "flex") }]}/>
-                  <Text style={style.vsText}>{v.quanche ? "-" : v.sharp ? "+" : ""}</Text>
-                </TouchableOpacity>
-
-              ))}
+              <TextRegular
+                center
+                style={style.vsText}
+              >
+                vs
+              </TextRegular>
             </View>
             <View style={style.teams}>
               <ScoreOut onPress={() => openScoreOutModal(1)} />
-              <TouchableOpacity
-                onPress={() => {
-                  setWhichTeam(1);
-                  setModalNameVisible(true);
-                }}
-              >
-                <Text style={style.teamText}>{team2}</Text>
-              </TouchableOpacity>
-              {teamScore2.map((v, i) => (
-                <TouchableOpacity
-                  key={i}
-                  onPress={() => {
-                    if (teamVs[teamVs.length - 1].x === 0 || i !== teamScore2.length - 1) {
-                      return;
-                    }
-                    setWhichTeam(1);
-                    setModalScoreVisible(true);
-                  }}
-                >
-                  <Text style={style.teamText}>{v}</Text>
-                </TouchableOpacity>
-              ))}
+              <TeamName
+                onPress={() => openNameModal(1)}
+                title={team2}
+              />
             </View>
           </View>
-          <View style={style.hr1} />
-          <View style={style.teamContainer1}>
-            <View style={style.teams}>
-              <Text style={style.teamText}>{teamScore1.reduce((p, v) => p + v, 0)}</Text>
-            </View>
-            <View style={style.vs} />
-            <View style={style.teams}>
-              <Text style={style.teamText}>{teamScore2.reduce((p, v) => p + v, 0)}</Text>
-            </View>
-          </View>
-          <TouchableOpacity
-            style={style.openButton}
-            onPress={() => {
-              setTeam1('Մենք');
-              setTeam2('Դուք');
-              setTeamScore1([0]);
-              setTeamVs([{ team: -1, x: 0, suit: -1, kaput: false, quanche: false, sharp: false }]);
-              setTeamScore2([0]);
-              setTeamScoreOut1([]);
-              setTeamScoreOut2([]);
-            }}
-          >
-            <Text style={style.scoreOut}>Սկսել նոր խաղ</Text>
-          </TouchableOpacity>
-        </ScrollView>
+          <TeamScores
+            teamScore1={teamScore1}
+            teamScore2={teamScore2}
+            teamVs={teamVs}
+            openTeamScoreModal={openTeamScoreModal}
+            openXModal={openXModal}
+            suits={suits}
+          />
+          <Line />
+          <TeamFinalScore
+            teamScore1={teamScore1}
+            teamScore2={teamScore2}
+          />
+          <StartNewGame
+            onPress={() => startNewGame()}
+            title="Սկսել նոր խաղ"
+          />
+        </View>
+
       <TeamNameModal
         modalVisible={modalNameVisible}
         setModalVisible={setModalNameVisible}
@@ -185,6 +147,7 @@ const Game = () => {
         teams={[team1, team2]}
         setTeamScoreOut1={setTeamScoreOut1}
         setTeamScoreOut2={setTeamScoreOut2}
+        suit={teamVs[teamVs.length - 1].suit}
       />
       <TeamXModal
         modalVisible={modalXVisible}

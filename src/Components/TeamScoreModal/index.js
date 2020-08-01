@@ -1,52 +1,56 @@
 import React, { useState } from 'react';
 import {
-    TextInput,
-    Modal,
-    Text,
-    TouchableOpacity,
-    View
+  TextInput,
+  StyleSheet
 } from "react-native";
-
-import styles from './style';
 
 import mathFunction from './Math';
 
-const TeamScoreModal = ({modalVisible, setModalVisible,
-                            setTeamScore1, setTeamScore2,
-                            teamScore1, teamScore2,
-                            whichTeam,
-                            teamVs, setTeamVs,
-                            teamScoreOut1, teamScoreOut2, teams}) => {
-    const [inputValue, setInputValue] = useState("0");
+import { AppModal } from "../../UI";
 
-    return (
-        <View style={styles.centeredView}>
-            <Modal
-                animationType="slide"
-                transparent
-                visible={modalVisible}
-            >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Գրեք "{teams[whichTeam]}" թիմի միավորների քանակը</Text>
-                        <TextInput style={styles.textInput} defaultValue={inputValue} autoFocus onChangeText={text => setInputValue(text)} />
-                        <TouchableOpacity
-                            style={styles.openButton}
-                            onPress={() => {mathFunction({modalVisible, setModalVisible,
-                                setTeamScore1, setTeamScore2,
-                                teamScore1, teamScore2,
-                                whichTeam,
-                                teamVs, setTeamVs,
-                                teamScoreOut1, teamScoreOut2, inputValue }); console.log(inputValue)}}
-                        >
-                            <Text style={styles.textStyle}>Հաստատել</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </Modal>
-        </View>
-    );
+const TeamScoreModal = ({
+  modalVisible, setModalVisible,
+  setTeamScore1, setTeamScore2,
+  teamScore1, teamScore2,
+  whichTeam,
+  teamVs, setTeamVs,
+  teamScoreOut1, teamScoreOut2, teams
+}) => {
+  const [inputValue, setInputValue] = useState("0");
+
+  return (
+    <AppModal
+      setModalVisible={setModalVisible}
+      modalVisible={modalVisible}
+      title={`Գրեք "${teams[whichTeam]}" թիմի միավորների քանակը`}
+      onPress={() => mathFunction({modalVisible, setModalVisible,
+        setTeamScore1, setTeamScore2,
+        teamScore1, teamScore2,
+        whichTeam,
+        teamVs, setTeamVs,
+        teamScoreOut1, teamScoreOut2,
+        inputValue, setInputValue })}
+    >
+      <TextInput
+        keyboardType='numeric'
+        style={styles.textInput}
+        defaultValue={inputValue}
+        autoFocus
+        onChangeText={text => setInputValue(text)}
+      />
+    </AppModal>
+  );
 };
 
+const styles = StyleSheet.create({
+  textInput: {
+    borderBottomWidth: 1,
+    width: 200,
+    height: 40,
+    marginVertical: 15,
+    fontSize: 18,
+    textAlign: "center",
+  },
+});
 
 export default TeamScoreModal;

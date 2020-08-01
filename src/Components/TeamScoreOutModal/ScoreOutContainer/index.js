@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-    Text,
-    View
+  Text,
+  View,
+  StyleSheet
 } from "react-native";
 
-import {Picker} from '@react-native-community/picker';
-
-import styles from '../style';
+import { Picker } from '@react-native-community/picker';
 
 const TeamScoreModal = ({ ScoreOutName, ScoreOutCount, selectedValue, setSelectedValue}) => {
     return (
@@ -23,5 +22,20 @@ const TeamScoreModal = ({ ScoreOutName, ScoreOutCount, selectedValue, setSelecte
     );
 };
 
+const styles = StyleSheet.create({
+  picker: {
+    width: 110,
+    height: 50,
+  },
+  scoreOutContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+  scoreOut: {
+    fontSize: 18,
+    width: "50%",
+  },
+});
 
 export default TeamScoreModal;

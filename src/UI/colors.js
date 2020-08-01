@@ -31,6 +31,10 @@ export default {
   lightGrey: '#BEBEBE',
   darkGrey: '#757575',
   darkRed: '#CE1C1C',
+  transparentWhite3: "rgba(255, 255, 255, .3)",
+  transparentBlack5: "rgba(0, 0, 0, .5)",
+  transparentWhite8: "rgba(255, 255, 255, .8)",
+
 };
 
 // export const isDark = Appearance.getColorScheme() === 'dark';

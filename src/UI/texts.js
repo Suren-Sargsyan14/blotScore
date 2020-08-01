@@ -6,6 +6,7 @@ import COLORS, { isDark } from './colors';
 export const TextRegular = ({
   children,
   style = {},
+  center = false,
   colorType = 'primary',
   ...rest
 }) => (
@@ -13,6 +14,7 @@ export const TextRegular = ({
     style={[
       ColorTypes[colorType],
       style,
+      center && styles.center,
     ]}
     {...rest}
   >

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import {
   TextInput,
-  Modal,
-  Text,
   TouchableOpacity,
   View,
   Image,
@@ -18,6 +16,8 @@ import diamonds from '../../assets/images/diamonds.png';
 import hearts from '../../assets/images/hearts.png';
 import spades from '../../assets/images/spades.png';
 import High from '../../assets/images/High.png';
+
+import { AppModal } from "../../UI";
 
 const TeamXModal = ({ modalVisible, setModalVisible, teams, setTeamVs, teamVs }) => {
   const [inputValue, setInputValue] = useState("8");
@@ -47,15 +47,12 @@ const TeamXModal = ({ modalVisible, setModalVisible, teams, setTeamVs, teamVs })
   };
 
   return (
-    <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent
-        visible={modalVisible}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Ընտրեք թիմը և գրեք թե ինչ են խոսացել</Text>
+    <AppModal
+      setModalVisible={setModalVisible}
+      modalVisible={modalVisible}
+      title="Ընտրեք թիմը և գրեք թե ինչ են խոսացել"
+      onPress={() => applyModal()}
+    >
             <View style={styles.blueButton}>
               <Picker
                 selectedValue={selectedValue}
@@ -88,7 +85,7 @@ const TeamXModal = ({ modalVisible, setModalVisible, teams, setTeamVs, teamVs })
               }
             </View>
             <TextInput style={styles.textInput} defaultValue={inputValue} autoFocus
-                       onChangeText={text => setInputValue(text)}/>
+                       onChangeText={text => setInputValue(text)} keyboardType='numeric'/>
             <Picker
               selectedValue={isQuanche}
               style={styles.picker}
@@ -98,17 +95,7 @@ const TeamXModal = ({ modalVisible, setModalVisible, teams, setTeamVs, teamVs })
               <Picker.Item label="Քուանշ" value="1" />
               <Picker.Item label="Սուր" value="2" />
             </Picker>
-
-            <TouchableOpacity
-              style={styles.openButton}
-              onPress={applyModal}
-            >
-              <Text style={styles.textStyle}>Հաստատել</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-    </View>
+    </AppModal>
   );
 };
 
