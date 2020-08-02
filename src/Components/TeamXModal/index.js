@@ -5,6 +5,7 @@ import {
   View,
   Image,
   Button,
+  FlatList
 } from "react-native";
 
 import { Picker } from '@react-native-community/picker';
@@ -36,6 +37,8 @@ const TeamXModal = ({ modalVisible, setModalVisible, teams, setTeamVs, teamVs })
         kaput: isKaput,
         quanche: isQuanche === "1",
         sharp: isQuanche === "2",
+        teamScore1: 0,
+        teamScore2: 0
       }]);
       setIsQuanche("0");
       setIsKaput(false);
@@ -53,48 +56,52 @@ const TeamXModal = ({ modalVisible, setModalVisible, teams, setTeamVs, teamVs })
       title="Ընտրեք թիմը և գրեք թե ինչ են խոսացել"
       onPress={() => applyModal()}
     >
-            <View style={styles.blueButton}>
-              <Picker
-                selectedValue={selectedValue}
-                style={styles.picker}
-                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-              >
-                <Picker.Item label={teams[0]} value="0" />
-                <Picker.Item label={teams[1]} value="1" />
-              </Picker>
-              <Button
-                title="Կապուտ"
-                onPress={async () => {
-                  setInputValue("25");
-                  await setIsKaput(!isKaput);
-                  console.log(isKaput);
-                }}
-                color={isKaput ? "red" : ""}
-              />
-            </View>
+      <View style={styles.blueButton}>
+        <Picker
+          selectedValue={selectedValue}
+          style={styles.picker}
+          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+        >
+          <Picker.Item label={teams[0]} value="0" />
+          <Picker.Item label={teams[1]} value="1" />
+        </Picker>
+        <Button
+          title="Կապուտ"
+          onPress={async () => {
+            setInputValue("25");
+            await setIsKaput(!isKaput);
+          }}
+          color={isKaput ? "red" : ""}
+        />
+      </View>
 
-            <View style={styles.suits}>
-              {suits.map((v, i) => (
-                <TouchableOpacity
-                  key={i}
-                  style={[styles.suitTouchable, { borderWidth: (i === selectedSuit ? 1 : 0) }]}
-                  onPress={() => setSelectedSuit(i)}
-                >
-                  <Image source={v} style={styles.suitImages}/>
-                </TouchableOpacity>))
-              }
-            </View>
-            <TextInput style={styles.textInput} defaultValue={inputValue} autoFocus
-                       onChangeText={text => setInputValue(text)} keyboardType='numeric'/>
-            <Picker
-              selectedValue={isQuanche}
-              style={styles.picker}
-              onValueChange={(itemValue, itemIndex) => setIsQuanche(itemValue)}
+      <View style={styles.suits}>
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={suits}
+          keyExtractor={(value, index) => (value + index).toString()}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity
+              style={[styles.suitTouchable, { borderColor: (index === selectedSuit ? "black" : "transparent") }]}
+              onPress={() => setSelectedSuit(index)}
             >
-              <Picker.Item label="........." value="0" />
-              <Picker.Item label="Քուանշ" value="1" />
-              <Picker.Item label="Սուր" value="2" />
-            </Picker>
+              <Image source={item} style={styles.suitImages}/>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+      <TextInput style={styles.textInput} defaultValue={inputValue} autoFocus
+                 onChangeText={text => setInputValue(text)} keyboardType='numeric'/>
+      <Picker
+        selectedValue={isQuanche}
+        style={styles.picker}
+        onValueChange={(itemValue, itemIndex) => setIsQuanche(itemValue)}
+      >
+        <Picker.Item label="........." value="0" />
+        <Picker.Item label="Քուանշ" value="1" />
+        <Picker.Item label="Սուր" value="2" />
+      </Picker>
     </AppModal>
   );
 };

@@ -6,16 +6,16 @@ import styles from './teamScore.style';
 import { TextRegular } from '../../UI';
 
 const TeamScore = ({
+  align,
   onPress,
   value,
 }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <TextRegular
-        center
-        style={styles.text}
+        style={[styles.text, {textAlign: align}]}
       >
-        {value}
+        {value === 0 ? "—" : value}
       </TextRegular>
     </TouchableOpacity>
   )

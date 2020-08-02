@@ -3,7 +3,7 @@ import {StyleSheet, TouchableOpacity, View, TouchableWithoutFeedback, Dimensions
 import Modal from 'react-native-modal';
 const { height, width } = Dimensions.get('window');
 import COLORS from './colors';
-import {TextBold, TextRegular} from "./texts";
+import { TextBold, TextRegular } from "./texts";
 
 const AppModal = ({
   setModalVisible,

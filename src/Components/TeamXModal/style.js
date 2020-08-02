@@ -8,16 +8,17 @@ export default {
     textAlign: "center"
   },
   suits: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   suitImages: {
     width: 30,
     height: 30,
     margin: 5,
-    marginHorizontal: 10,
   },
   suitTouchable: {
-    padding: 5
+    padding: 5,
+    borderWidth: 1,
+    marginHorizontal: 4
   },
   blueButton: {
     marginVertical: 10,

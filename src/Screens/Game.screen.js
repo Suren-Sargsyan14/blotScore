@@ -29,9 +29,7 @@ const Game = () => {
   const [modalScoreVisible, setModalScoreVisible] = useState(false);
   const [modalScoreOutVisible, setModalScoreOutVisible] = useState(false);
   const [modalXVisible, setModalXVisible] = useState(false);
-  const [teamScore1, setTeamScore1] = useState([0]);
-  const [teamVs, setTeamVs] = useState([{ team: -1, x: 0, suit: -1, kaput: false, quanche: false, sharp: false }]);
-  const [teamScore2, setTeamScore2] = useState([0]);
+  const [teamVs, setTeamVs] = useState([{ team: -1, x: 0, suit: -1, kaput: false, quanche: false, sharp: false, teamScore1: 0, teamScore2: 0 }]);
   const [teamScoreOut1, setTeamScoreOut1] = useState([]);
   const [teamScoreOut2, setTeamScoreOut2] = useState([]);
 
@@ -45,15 +43,14 @@ const Game = () => {
     setModalNameVisible(true);
     setWhichTeam(team);
   };
-  const openTeamScoreModal = (team, teamScore, teamVs, index) => {
-    if (teamVs[teamVs.length - 1].x === 0 || index !== teamScore.length - 1) {
+  const openTeamScoreModal = (team, index) => {
+    if (teamVs[teamVs.length - 1].x === 0 || index !== teamVs.length - 1) {
       return;
     }
     setModalScoreVisible(true);
     setWhichTeam(team);
   };
   const openXModal = (index) => {
-    console.log(index, teamVs);
     if (index !== teamVs.length - 1) {
       return;
     }
@@ -63,9 +60,7 @@ const Game = () => {
   const startNewGame = () => {
     setTeam1('Մենք');
     setTeam2('Դուք');
-    setTeamScore1([0]);
-    setTeamVs([{ team: -1, x: 0, suit: -1, kaput: false, quanche: false, sharp: false }]);
-    setTeamScore2([0]);
+    setTeamVs([{ team: -1, x: 0, suit: -1, kaput: false, quanche: false, sharp: false, teamScore1: 0, teamScore2: 0 }]);
     setTeamScoreOut1([]);
     setTeamScoreOut2([]);
   };
@@ -103,8 +98,6 @@ const Game = () => {
             </View>
           </View>
           <TeamScores
-            teamScore1={teamScore1}
-            teamScore2={teamScore2}
             teamVs={teamVs}
             openTeamScoreModal={openTeamScoreModal}
             openXModal={openXModal}
@@ -112,8 +105,7 @@ const Game = () => {
           />
           <Line />
           <TeamFinalScore
-            teamScore1={teamScore1}
-            teamScore2={teamScore2}
+            teamVs={teamVs}
           />
           <StartNewGame
             onPress={() => startNewGame()}
@@ -129,10 +121,6 @@ const Game = () => {
       <TeamScoreModal
         modalVisible={modalScoreVisible}
         setModalVisible={setModalScoreVisible}
-        setTeamScore1={setTeamScore1}
-        setTeamScore2={setTeamScore2}
-        teamScore1={teamScore1}
-        teamScore2={teamScore2}
         whichTeam={whichTeam}
         teamVs={teamVs}
         setTeamVs={setTeamVs}
