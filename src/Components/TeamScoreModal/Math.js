@@ -5,6 +5,7 @@ export default ({
   whichTeam,
   teamVs, setTeamVs,
   teamScoreOut1, teamScoreOut2,
+  setTeamScoreOut1, setTeamScoreOut2,
   inputValue, setInputValue
 }) => {
 
@@ -29,11 +30,9 @@ export default ({
     if (teamVs[teamVs.length - 1].kaput) {
       if (!parseInt(teamVs[teamVs.length - 1].team)) {
         if (inputValue !== "00") {
-          console.log('a')
           setTeamScore1([...teamScore1, 0, 0]);
           setTeamScore2([...teamScore2, lose, 0])
         } else {
-          console.log('b')
           setTeamScore1([...teamScore1, (suit === 4 ? parseInt(score) * 2 : parseInt(score)) + 25 + scoreOut1 / 10 + (quanche ? (parseInt(score) + scoreOut2 / 10) : (sharp ? (parseInt(score) * 3 + scoreOut2 / 10) : 0)), 0]);
           setTeamScore2([...teamScore2, ((quanche || sharp) ? 0 : scoreOut2 / 10), 0])
         }
@@ -48,6 +47,8 @@ export default ({
       }
       setTeamVs([...teamVs, {team: -1, x: 0, suit: -1}]);
       setModalVisible(!modalVisible);
+      setTeamScoreOut1([]);
+      setTeamScoreOut2([]);
       return;
     }
     if (!parseInt(teamVs[teamVs.length - 1].team)) {
@@ -57,7 +58,6 @@ export default ({
       } else {
         let inpValue = teamReverse;
         setTeamScore1([...teamScore1, (suit === 4 ? parseInt(score) * 2 : parseInt(score)) + (max - inpValue) + scoreOut1 / 10 + (quanche ? (parseInt(score) + scoreOut2 / 10 + parseInt(inpValue)) : (sharp ? (parseInt(score) * 3 + scoreOut2 / 10 + parseInt(inpValue)) : 0)), 0]);
-        console.log(parseInt(inpValue) + scoreOut2 / 10, inpValue, scoreOut2 / 10);
         setTeamScore2([...teamScore2, ((quanche || sharp) ? 0 : (parseInt(inpValue) + scoreOut2 / 10)), 0])
       }
     } else {
@@ -91,6 +91,8 @@ export default ({
       }
       setTeamVs([...teamVs, {team: -1, x: 0, suit: -1}]);
       setModalVisible(!modalVisible);
+      setTeamScoreOut1([]);
+      setTeamScoreOut2([]);
       return;
     }
     if (!parseInt(teamVs[teamVs.length - 1].team)) {
@@ -115,5 +117,7 @@ export default ({
   }
   setTeamVs([...teamVs, {team: -1, x: 0, suit: -1}]);
   setModalVisible(!modalVisible);
+  setTeamScoreOut1([]);
+  setTeamScoreOut2([]);
   setInputValue("");
 }

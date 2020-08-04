@@ -12,9 +12,10 @@ const TeamScoreModal = ({
   modalVisible, setModalVisible,
   setTeamScore1, setTeamScore2,
   teamScore1, teamScore2,
-  whichTeam,
+  whichTeam, teams,
   teamVs, setTeamVs,
-  teamScoreOut1, teamScoreOut2, teams
+  teamScoreOut1, setTeamScoreOut1,
+  teamScoreOut2, setTeamScoreOut2,
 }) => {
   const [inputValue, setInputValue] = useState("0");
 

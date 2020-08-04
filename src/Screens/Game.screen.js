@@ -137,7 +137,9 @@ const Game = () => {
         teamVs={teamVs}
         setTeamVs={setTeamVs}
         teamScoreOut1={teamScoreOut1}
+        setTeamScoreOut1={setTeamScoreOut1}
         teamScoreOut2={teamScoreOut2}
+        setTeamScoreOut2={setTeamScoreOut2}
         teams={[team1, team2]}
       />
       <TeamScoreOutModal
