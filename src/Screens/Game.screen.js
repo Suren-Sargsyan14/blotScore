@@ -10,7 +10,15 @@ import TeamScoreModal from '../Components/TeamScoreModal';
 import TeamXModal from '../Components/TeamXModal';
 import TeamScoreOutModal from '../Components/TeamScoreOutModal';
 
-import {GameTitle, ScoreOut, TeamName, TeamScores, Line, TeamFinalScore, StartNewGame } from '../Components';
+import {
+  GameTitle,
+  ScoreOut,
+  TeamName,
+  TeamScores,
+  Line,
+  TeamFinalScore,
+  StartNewGame
+} from '../Components';
 
 import style from '../Styles/game.screen.style';
 
@@ -53,7 +61,6 @@ const Game = () => {
     setWhichTeam(team);
   };
   const openXModal = (index) => {
-    console.log(index, teamVs);
     if (index !== teamVs.length - 1) {
       return;
     }

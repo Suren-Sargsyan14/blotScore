@@ -1,9 +1,18 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View, TouchableWithoutFeedback, Dimensions} from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  TouchableWithoutFeedback,
+  Dimensions
+} from 'react-native';
 import Modal from 'react-native-modal';
-const { height, width } = Dimensions.get('window');
+
 import COLORS from './colors';
-import {TextBold, TextRegular} from "./texts";
+
+import { TextBold, TextRegular } from './texts';
+
+const { height, width } = Dimensions.get('window');
 
 const AppModal = ({
   setModalVisible,

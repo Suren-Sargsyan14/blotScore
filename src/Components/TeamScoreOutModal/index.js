@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import ScoreOutContainer from './ScoreOutContainer';
 
-import { AppModal } from "../../UI";
+import { AppModal } from '../../UI';
 
 const TeamScoreModal = ({
   modalVisible,
@@ -55,7 +55,7 @@ const TeamScoreModal = ({
       setModalVisible={setModalVisible}
       modalVisible={modalVisible}
       title={`Գրեք թէ քանի՞ միավոր ունի "${teams[whichTeam]}" թիմը դրսից`}
-      onPress={() => applyModal()}
+      onPress={applyModal}
     >
       <ScoreOutContainer
           ScoreOutName="Թերզ"

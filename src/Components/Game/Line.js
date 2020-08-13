@@ -1,17 +1,17 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-const ScoreOut = () => {
-  return (
-    <View style={styles.hr} />
-  )
-};
+import { COLORS } from '../../UI';
+
+const ScoreOut = () => (
+  <View style={styles.hr} />
+);
 
 const styles = StyleSheet.create({
   hr: {
     marginTop: 15,
     borderBottomWidth: 1,
-    borderBottomColor: "white",
+    borderBottomColor: COLORS.white,
   },
 });
 

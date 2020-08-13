@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   TextInput,
   StyleSheet,
-} from "react-native";
+} from 'react-native';
 
-import { AppModal } from "../../UI";
+import { AppModal } from '../../UI';
 
 const TeamNameModal = ({ modalVisible, setModalVisible, setTeam }) => {
   const [inputValue, setInputValue] = useState("");
@@ -21,7 +21,7 @@ const TeamNameModal = ({ modalVisible, setModalVisible, setTeam }) => {
       setModalVisible={setModalVisible}
       modalVisible={modalVisible}
       title="Գրեք թիմի նոր անունը"
-      onPress={() => applyModal()}
+      onPress={applyModal}
     >
       <TextInput
         style={styles.textInput}

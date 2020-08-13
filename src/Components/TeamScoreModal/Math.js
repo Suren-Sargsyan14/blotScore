@@ -1,12 +1,19 @@
 export default ({
-  modalVisible, setModalVisible,
-  setTeamScore1, setTeamScore2,
-  teamScore1, teamScore2,
+  modalVisible,
+  setModalVisible,
+  setTeamScore1,
+  setTeamScore2,
+  teamScore1,
+  teamScore2,
   whichTeam,
-  teamVs, setTeamVs,
-  teamScoreOut1, teamScoreOut2,
-  setTeamScoreOut1, setTeamScoreOut2,
-  inputValue, setInputValue
+  teamVs,
+  setTeamVs,
+  teamScoreOut1,
+  teamScoreOut2,
+  setTeamScoreOut1,
+  setTeamScoreOut2,
+  inputValue,
+  setInputValue
 }) => {
 
   let scoreOut1 = teamScoreOut1.reduce((p, v) => p + v, 0),

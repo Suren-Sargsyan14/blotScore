@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS } from "../UI";
+import { COLORS } from '../UI';
 
 export default StyleSheet.create({
   teamContainer: {

@@ -8,20 +8,18 @@ import { TextBold } from '../../UI';
 const TeamName = ({
   onPress,
   title,
-}) => {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
+}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    center
+  >
+    <TextBold
       center
+      style={styles.teamText}
     >
-      <TextBold
-        center
-        style={styles.teamText}
-      >
-        {title}
-      </TextBold>
-    </TouchableOpacity>
-  )
-};
+      {title}
+    </TextBold>
+  </TouchableOpacity>
+);
 
 export default TeamName;
