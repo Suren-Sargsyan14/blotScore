@@ -6,8 +6,8 @@ import styles from './teamScores.style';
 import { TextRegular } from '../../UI';
 
 const TeamFinalScore = ({ teamVs }) => {
-  const score1 = useMemo(() => teamVs.teamScore1.reduce((p, v) => p + v), [teamScore1]);
-  const score2 = useMemo(() => teamVs.teamScore2.reduce((p, v) => p + v), [teamScore1]);
+  const score1 = useMemo(() => teamVs?.reduce((p, v) => p + v?.teamScore1, 0), [teamVs]);
+  const score2 = useMemo(() => teamVs?.reduce((p, v) => p + v?.teamScore2, 0), [teamVs]);
 
   return (
     <View style={styles.scrollContainer}>
