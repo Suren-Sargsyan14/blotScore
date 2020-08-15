@@ -8,17 +8,15 @@ import { TextBold } from '../../UI';
 const ScoreOut = ({
   onPress,
   title,
-}) => {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={styles.openButton}
-    >
-      <TextBold center>
-        {title}
-      </TextBold>
-    </TouchableOpacity>
-  )
-};
+}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={styles.openButton}
+  >
+    <TextBold center>
+      {title}
+    </TextBold>
+  </TouchableOpacity>
+);
 
 export default ScoreOut;

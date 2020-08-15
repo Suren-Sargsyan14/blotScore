@@ -9,30 +9,31 @@ const TeamX = ({
   onPress,
   v,
   suits
-}) => {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={styles.teamX}
+}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={styles.teamX}
+  >
+    <TextRegular
+      center
+      style={styles.text}
     >
-      <TextRegular
-        center
-        style={styles.text}
-      >
-        {v.x}
-      </TextRegular>
+      {v.x}
+    </TextRegular>
+    {v.suit !== -1 && (
       <Image
         source={suits[v.suit]}
-        style={[styles.image, {display: (v.suit === -1 ? "none" : "flex")}]}
+        style={styles.image}
       />
-      <TextRegular
-        center
-        style={styles.text}
-      >
-        {v.quanche ? "-" : (v.sharp ? "+" : "")}
-      </TextRegular>
-    </TouchableOpacity>
-  )
-};
+    )}
+
+    <TextRegular
+      center
+      style={styles.text}
+    >
+      {v.quanche ? "-" : (v.sharp ? "+" : "")}
+    </TextRegular>
+  </TouchableOpacity>
+);
 
 export default TeamX;

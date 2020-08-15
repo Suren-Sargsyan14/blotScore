@@ -9,16 +9,12 @@ const TeamScore = ({
   align,
   onPress,
   value,
-}) => {
-  return (
-    <TouchableOpacity onPress={onPress}>
-      <TextRegular
-        style={[styles.text, {textAlign: align}]}
-      >
-        {value === 0 ? "—" : value}
-      </TextRegular>
-    </TouchableOpacity>
-  )
-};
+}) => (
+  <TouchableOpacity onPress={onPress}>
+    <TextRegular style={[styles.text, { textAlign: align }]}>
+      {value === 0 ? "—" : value}
+    </TextRegular>
+  </TouchableOpacity>
+);
 
 export default TeamScore;

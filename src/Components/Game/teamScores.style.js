@@ -1,11 +1,12 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import {COLORS} from "../../UI";
+
+import { COLORS } from '../../UI';
 
 const { height } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
-    height: Math.floor(height/2),
+    height: Math.floor(height / 2),
   },
   scrollContainer: {
     flexDirection: "row",

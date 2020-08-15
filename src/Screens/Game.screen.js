@@ -10,7 +10,15 @@ import TeamScoreModal from '../Components/TeamScoreModal';
 import TeamXModal from '../Components/TeamXModal';
 import TeamScoreOutModal from '../Components/TeamScoreOutModal';
 
-import {GameTitle, ScoreOut, TeamName, TeamScores, Line, TeamFinalScore, StartNewGame } from '../Components';
+import {
+  GameTitle,
+  ScoreOut,
+  TeamName,
+  TeamScores,
+  Line,
+  TeamFinalScore,
+  StartNewGame
+} from '../Components';
 
 import style from '../Styles/game.screen.style';
 
@@ -125,7 +133,9 @@ const Game = () => {
         teamVs={teamVs}
         setTeamVs={setTeamVs}
         teamScoreOut1={teamScoreOut1}
+        setTeamScoreOut1={setTeamScoreOut1}
         teamScoreOut2={teamScoreOut2}
+        setTeamScoreOut2={setTeamScoreOut2}
         teams={[team1, team2]}
       />
       <TeamScoreOutModal

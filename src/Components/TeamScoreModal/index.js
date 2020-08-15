@@ -2,19 +2,27 @@ import React, { useState } from 'react';
 import {
   TextInput,
   StyleSheet
-} from "react-native";
+} from 'react-native';
 
 import mathFunction from './Math';
 
-import { AppModal } from "../../UI";
+import { AppModal } from '../../UI';
 
 const TeamScoreModal = ({
-  modalVisible, setModalVisible,
-  setTeamScore1, setTeamScore2,
-  teamScore1, teamScore2,
+  teams,
+  teamVs,
+  setTeamVs,
   whichTeam,
-  teamVs, setTeamVs,
-  teamScoreOut1, teamScoreOut2, teams
+  teamScore1,
+  teamScore2,
+  setTeamScore1,
+  setTeamScore2,
+  modalVisible,
+  setModalVisible,
+  teamScoreOut1,
+  teamScoreOut2,
+  setTeamScoreOut1,
+  setTeamScoreOut2,
 }) => {
   const [inputValue, setInputValue] = useState("0");
 
@@ -23,13 +31,23 @@ const TeamScoreModal = ({
       setModalVisible={setModalVisible}
       modalVisible={modalVisible}
       title={`Գրեք "${teams[whichTeam]}" թիմի միավորների քանակը`}
-      onPress={() => mathFunction({modalVisible, setModalVisible,
-        setTeamScore1, setTeamScore2,
-        teamScore1, teamScore2,
+      onPress={() => mathFunction({
+        modalVisible,
+        setModalVisible,
+        setTeamScore1,
+        setTeamScore2,
+        teamScore1,
+        teamScore2,
         whichTeam,
-        teamVs, setTeamVs,
-        teamScoreOut1, teamScoreOut2,
-        inputValue, setInputValue })}
+        teamVs,
+        setTeamVs,
+        teamScoreOut1,
+        teamScoreOut2,
+        setTeamScoreOut1,
+        setTeamScoreOut2,
+        inputValue,
+        setInputValue
+      })}
     >
       <TextInput
         keyboardType='numeric'

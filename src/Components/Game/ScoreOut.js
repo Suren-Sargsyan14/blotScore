@@ -13,7 +13,10 @@ const ScoreOut = ({
       onPress={onPress}
       style={styles.openButton}
     >
-      <Image source={ScoreIcon} style={{width: 40, height: 40}} />
+      <Image
+        source={ScoreIcon}
+        style={styles.image}
+      />
     </TouchableOpacity>
   )
 };

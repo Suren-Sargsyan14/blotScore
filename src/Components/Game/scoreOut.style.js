@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import {COLORS} from "../../UI";
+import { COLORS } from '../../UI';
 
 export default StyleSheet.create({
   openButton: {
@@ -11,5 +11,9 @@ export default StyleSheet.create({
     borderRadius: 5,
     marginHorizontal: 20,
     backgroundColor: COLORS.transparentWhite8,
+  },
+  image: {
+    width: 40,
+    height: 40,
   },
 });

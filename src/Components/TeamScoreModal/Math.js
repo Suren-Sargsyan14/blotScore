@@ -1,9 +1,15 @@
 export default ({
-  modalVisible, setModalVisible,
+  modalVisible,
+  setModalVisible,
   whichTeam,
-  teamVs, setTeamVs,
-  teamScoreOut1, teamScoreOut2,
-  inputValue, setInputValue
+  teamVs,
+  setTeamVs,
+  teamScoreOut1,
+  teamScoreOut2,
+  setTeamScoreOut1,
+  setTeamScoreOut2,
+  inputValue,
+  setInputValue
 }) => {
 
   let scoreOut1 = teamScoreOut1.reduce((p, v) => p + v, 0),
@@ -14,7 +20,6 @@ export default ({
     sharp = teamVs[teamVs.length - 1].sharp,
     max = inputValue === "0" ? 25 : 16;
   inputValue = 0 + inputValue;
-
 
   let lose = (suit === 4 ? parseInt(score) * 2 : parseInt(score)) + max + scoreOut1 / 10 + scoreOut2 / 10 + (quanche ? parseInt(score) : (sharp ? (parseInt(score) * 3) : 0)),
     teamReverse = (parseInt(inputValue[inputValue.length - 1]) > 5) ? (parseInt(inputValue.slice(0, -1)) + 1) : inputValue.slice(0, -1),
@@ -44,6 +49,8 @@ export default ({
       teamVs[teamVs.length - 1].teamScore2 = newTeamScore2;
       setTeamVs([...teamVs, {team: -1, x: 0, suit: -1, kaput: false, quanche: false, sharp: false, teamScore1: 0, teamScore2: 0 }]);
       setModalVisible(!modalVisible);
+      setTeamScoreOut1([]);
+      setTeamScoreOut2([]);
       setInputValue("");
       return;
     }
@@ -90,6 +97,8 @@ export default ({
       teamVs[teamVs.length - 1].teamScore2 = newTeamScore2;
       setTeamVs([...teamVs, {team: -1, x: 0, suit: -1, kaput: false, quanche: false, sharp: false, teamScore1: 0, teamScore2: 0 }]);
       setModalVisible(!modalVisible);
+      setTeamScoreOut1([]);
+      setTeamScoreOut2([]);
       setInputValue("");
       return;
     }
@@ -117,5 +126,7 @@ export default ({
   teamVs[teamVs.length - 1].teamScore2 = newTeamScore2;
   setTeamVs([...teamVs, {team: -1, x: 0, suit: -1, kaput: false, quanche: false, sharp: false, teamScore1: 0, teamScore2: 0 }]);
   setModalVisible(!modalVisible);
+  setTeamScoreOut1([]);
+  setTeamScoreOut2([]);
   setInputValue("");
 }

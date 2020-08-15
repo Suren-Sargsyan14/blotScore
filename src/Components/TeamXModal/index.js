@@ -6,7 +6,7 @@ import {
   Image,
   Button,
   FlatList
-} from "react-native";
+} from 'react-native';
 
 import { Picker } from '@react-native-community/picker';
 
@@ -18,9 +18,15 @@ import hearts from '../../assets/images/hearts.png';
 import spades from '../../assets/images/spades.png';
 import High from '../../assets/images/High.png';
 
-import { AppModal } from "../../UI";
+import { AppModal } from '../../UI';
 
-const TeamXModal = ({ modalVisible, setModalVisible, teams, setTeamVs, teamVs }) => {
+const TeamXModal = ({
+  modalVisible,
+  setModalVisible,
+  teams,
+  setTeamVs,
+  teamVs
+}) => {
   const [inputValue, setInputValue] = useState("8");
   const [selectedValue, setSelectedValue] = useState("0");
   const [selectedSuit, setSelectedSuit] = useState(-1);
@@ -54,7 +60,7 @@ const TeamXModal = ({ modalVisible, setModalVisible, teams, setTeamVs, teamVs })
       setModalVisible={setModalVisible}
       modalVisible={modalVisible}
       title="Ընտրեք թիմը և գրեք թե ինչ են խոսացել"
-      onPress={() => applyModal()}
+      onPress={applyModal}
     >
       <View style={styles.blueButton}>
         <Picker
@@ -71,7 +77,7 @@ const TeamXModal = ({ modalVisible, setModalVisible, teams, setTeamVs, teamVs })
             setInputValue("25");
             await setIsKaput(!isKaput);
           }}
-          color={isKaput ? "red" : ""}
+          color={isKaput && "red"}
         />
       </View>
 
@@ -86,13 +92,21 @@ const TeamXModal = ({ modalVisible, setModalVisible, teams, setTeamVs, teamVs })
               style={[styles.suitTouchable, { borderColor: (index === selectedSuit ? "black" : "transparent") }]}
               onPress={() => setSelectedSuit(index)}
             >
-              <Image source={item} style={styles.suitImages}/>
+              <Image
+                source={item}
+                style={styles.suitImages}
+              />
             </TouchableOpacity>
           )}
         />
       </View>
-      <TextInput style={styles.textInput} defaultValue={inputValue} autoFocus
-                 onChangeText={text => setInputValue(text)} keyboardType='numeric'/>
+      <TextInput
+        style={styles.textInput}
+        defaultValue={inputValue}
+        autoFocus
+        onChangeText={text => setInputValue(text)}
+        keyboardType='numeric'
+      />
       <Picker
         selectedValue={isQuanche}
         style={styles.picker}
