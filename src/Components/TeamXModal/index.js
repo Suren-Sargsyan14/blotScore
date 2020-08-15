@@ -5,6 +5,7 @@ import {
   View,
   Image,
   Button,
+  FlatList
 } from 'react-native';
 
 import { Picker } from '@react-native-community/picker';
@@ -42,6 +43,8 @@ const TeamXModal = ({
         kaput: isKaput,
         quanche: isQuanche === "1",
         sharp: isQuanche === "2",
+        teamScore1: 0,
+        teamScore2: 0
       }]);
       setIsQuanche("0");
       setIsKaput(false);
@@ -73,25 +76,29 @@ const TeamXModal = ({
           onPress={async () => {
             setInputValue("25");
             await setIsKaput(!isKaput);
-            console.log(isKaput);
           }}
           color={isKaput && "red"}
         />
       </View>
 
       <View style={styles.suits}>
-        {suits.map((v, i) => (
-          <TouchableOpacity
-            key={i}
-            style={[styles.suitTouchable, { borderWidth: (i === selectedSuit ? 1 : 0) }]}
-            onPress={() => setSelectedSuit(i)}
-          >
-            <Image
-              source={v}
-              style={styles.suitImages}
-            />
-          </TouchableOpacity>))
-        }
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={suits}
+          keyExtractor={(value, index) => (value + index).toString()}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity
+              style={[styles.suitTouchable, { borderColor: (index === selectedSuit ? "black" : "transparent") }]}
+              onPress={() => setSelectedSuit(index)}
+            >
+              <Image
+                source={item}
+                style={styles.suitImages}
+              />
+            </TouchableOpacity>
+          )}
+        />
       </View>
       <TextInput
         style={styles.textInput}

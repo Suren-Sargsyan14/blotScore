@@ -10,6 +10,11 @@ export default StyleSheet.create({
   },
   scrollContainer: {
     flexDirection: "row",
+    justifyContent: "center",
+    width: "100%",
+  },
+  finalScoreContainer: {
+    flexDirection: "row",
     justifyContent: "space-around",
     width: "100%",
   },

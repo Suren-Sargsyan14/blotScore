@@ -5,12 +5,10 @@ import styles from './teamScores.style';
 
 import { TextRegular } from '../../UI';
 
-const TeamFinalScore = ({
-  teamScore1,
-  teamScore2
-}) => {
-  const score1 = useMemo(() => teamScore1.reduce((p, v) => p + v), [teamScore1]);
-  const score2 = useMemo(() => teamScore2.reduce((p, v) => p + v), [teamScore1]);
+const TeamFinalScore = ({ teamVs }) => {
+  const score1 = useMemo(() => teamVs?.reduce((p, v) => p + v?.teamScore1, 0), [teamVs]);
+  const score2 = useMemo(() => teamVs?.reduce((p, v) => p + v?.teamScore2, 0), [teamVs]);
+
   return (
     <View style={styles.scrollContainer}>
       <View style={styles.team}>
