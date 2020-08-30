@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 
-import { COLORS, TextRegular } from '../../UI';
+import { TextRegular } from '../../UI';
 
 import styles from './button.style';
 

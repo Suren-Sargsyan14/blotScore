@@ -1,28 +1,17 @@
 export default ({
   teamVs,
-  setTeamVs,
   whichTeam,
   inputValue,
-  modalScoreVisible,
-  setInputValue,
   teamScoreOut1,
   teamScoreOut2,
-  setModalScoreVisible,
-  setTeamScoreOut1,
-  setTeamScoreOut2,
-  setSelectedLessValue,
-  setSelectedBlotValue,
-  setSelectedFiftyValue,
-  setSelected4PaperValue,
-  setSelectedHundredValue,
 }) => {
   let scoreOut1 = teamScoreOut1.reduce((p, v) => p + v, 0),
-    scoreOut2 = teamScoreOut2.reduce((p, v) => p + v, 0),
-    score = teamVs[teamVs.length - 1].x,
-    suit = teamVs[teamVs.length - 1].suit,
-    quanche = teamVs[teamVs.length - 1].quanche,
-    sharp = teamVs[teamVs.length - 1].sharp,
-    max = inputValue === "0" ? 25 : 16;
+      scoreOut2 = teamScoreOut2.reduce((p, v) => p + v, 0),
+      score = teamVs[teamVs.length - 1].x,
+      suit = teamVs[teamVs.length - 1].suit,
+      quanche = teamVs[teamVs.length - 1].quanche,
+      sharp = teamVs[teamVs.length - 1].sharp,
+      max = inputValue === "0" ? 25 : 16;
   inputValue = 0 + inputValue;
 
   let lose = (suit === 4 ? parseInt(score) * 2 : parseInt(score)) + max + scoreOut1 / 10 + scoreOut2 / 10 + (quanche ? parseInt(score) : (sharp ? (parseInt(score) * 3) : 0)),
@@ -49,8 +38,9 @@ export default ({
           newTeamScore1 = ((quanche || sharp) ? 0 : scoreOut1 / 10);
         }
       }
-      return resetState();
+      return [newTeamScore1, newTeamScore2];
     }
+
     if (!parseInt(teamVs[teamVs.length - 1].team)) {
       if ((162 - inputValue + scoreOut1) < (score * 10)) {
         newTeamScore1 = 0;
@@ -90,8 +80,9 @@ export default ({
           newTeamScore1 = ((quanche || sharp) ? 0 : scoreOut1 / 10);
         }
       }
-      return resetState();
+      return [newTeamScore1, newTeamScore2];
     }
+
     if (!parseInt(teamVs[teamVs.length - 1].team)) {
       if (parseInt(inputValue) + scoreOut1 < (score * 10)) {
         newTeamScore1 = 0;
@@ -112,20 +103,5 @@ export default ({
       }
     }
   }
-  resetState();
-
-  function resetState(){
-    setInputValue("");
-    setTeamScoreOut1([]);
-    setTeamScoreOut2([]);
-    setModalScoreVisible(!modalScoreVisible);
-    teamVs[teamVs.length - 1].teamScore1 = newTeamScore1;
-    teamVs[teamVs.length - 1].teamScore2 = newTeamScore2;
-    setSelectedLessValue({ team: null, count: 0 });
-    setSelectedBlotValue({ team: null, count: 0 });
-    setSelectedFiftyValue({ team: null, count: 0 });
-    setSelected4PaperValue({ team: null, count: 0 });
-    setSelectedHundredValue({ team: null, count: 0 });
-    setTeamVs([...teamVs, {team: -1, x: 0, suit: -1, kaput: false, quanche: false, sharp: false, teamScore1: 0, teamScore2: 0 }]);
-  }
+  return [newTeamScore1, newTeamScore2];
 }

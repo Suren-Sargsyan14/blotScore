@@ -16,4 +16,5 @@ const Buttons = ({
     </View>
   </TouchableOpacity>
 );
+
 export default Buttons;

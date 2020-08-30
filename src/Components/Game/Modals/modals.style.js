@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-import {COLORS} from "../../../UI";
+
+import { COLORS } from '../../../UI';
 
 export default StyleSheet.create({
   textInput: {
@@ -30,7 +31,7 @@ export default StyleSheet.create({
   suitTouchable: {
     padding: 5,
     borderWidth: 1,
-    marginHorizontal: 4
+    marginHorizontal: 4,
   },
   buttonContainer: {
     marginVertical: 10,
@@ -40,7 +41,7 @@ export default StyleSheet.create({
   },
   picker: {
     width: 110,
-    height: 50
+    height: 50,
   },
   text: {
     color: COLORS.white,

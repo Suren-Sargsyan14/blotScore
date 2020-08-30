@@ -1,10 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   Text,
   View,
   TouchableOpacity,
 } from 'react-native';
-import { connect } from 'react-redux';
 
 import { TextRegular } from '../../../../UI';
 import { setCardCount } from '../../../../Actions/scoreOut';
@@ -23,8 +23,9 @@ const ScoreOutContainer = ({
 }) => {
   const plus = () => {
     if(scoreOutCount !== null){
-      if(selectedValue?.count >= scoreOutCount)
+      if(selectedValue?.count >= scoreOutCount){
         return;
+      }
       setSelectedValue({
         team: whichTeam,
         count: selectedValue?.count + 1,
@@ -45,8 +46,9 @@ const ScoreOutContainer = ({
   };
   const minus = () => {
     if(scoreOutCount !== null){
-      if(selectedValue?.count === 0)
+      if(selectedValue?.count === 0){
         return;
+      }
       setSelectedValue({
         team: selectedValue?.count - 1 === 0 ? null : whichTeam,
         count: selectedValue?.count - 1,
@@ -65,6 +67,7 @@ const ScoreOutContainer = ({
       count: selectedValue?.count - 1,
     });
   };
+
   return (selectedValue.team === null || selectedValue.team === whichTeam) && (
     <View style={styles.scoreOutContainer}>
       <Text style={styles.scoreOut}>{scoreOutName}</Text>

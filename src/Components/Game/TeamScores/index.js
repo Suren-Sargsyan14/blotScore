@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import { View, FlatList } from 'react-native';
 
 import styles from './teamScores.style';
 
@@ -28,6 +28,7 @@ const TeamScores = ({
     />
   </View>
 );
+
 const mapStateToProps = ({ main: { teamVs } }) => ({
   teamVs,
 });

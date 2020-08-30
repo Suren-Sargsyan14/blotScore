@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
 import { connect } from 'react-redux';
+import { View } from 'react-native';
 
 import Buttons from '../Buttons';
 

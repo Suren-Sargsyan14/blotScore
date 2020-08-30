@@ -27,6 +27,6 @@ export default StyleSheet.create({
   text: {
     color: COLORS.white,
     fontSize: 23,
-    marginVertical: 10
+    marginVertical: 10,
   },
 });

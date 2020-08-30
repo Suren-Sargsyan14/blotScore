@@ -50,10 +50,12 @@ const TeamXModal = ({
     }
     setModalXVisible(!modalXVisible);
   };
+
   const onKaputPress = async () => {
     setInputValue(!isKaput && inputValue < 25 ? "25" : inputValue);
     await setIsKaput(!isKaput);
   };
+
   return (
     <AppModal
       setModalVisible={setModalXVisible}
@@ -68,7 +70,6 @@ const TeamXModal = ({
         selectedTeam={selectedTeam}
         setSelectedTeam={setSelectedTeam}
       />
-
       <View style={styles.inputContainer}>
         <TextInput
           autoFocus
@@ -83,12 +84,10 @@ const TeamXModal = ({
           onPress={onKaputPress}
         />
       </View>
-
       <Suits
         selectedSuit={selectedSuit}
         setSelectedSuit={setSelectedSuit}
       />
-
       <ButtonContainer
         type={false}
         isQuanche={isQuanche}
@@ -99,6 +98,7 @@ const TeamXModal = ({
     </AppModal>
   );
 };
+
 const mapStateToProps = ({ main: { teamVs, modalXVisible } }) => ({
   teamVs,
   modalXVisible,

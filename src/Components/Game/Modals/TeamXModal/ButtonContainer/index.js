@@ -17,28 +17,34 @@ const ButtonContainer = ({
 }) => {
   const teams = [team1, team2];
 
-  const quancheSharp = (type) => {
-    if(type){
-      setIsQuanche(isQuanche === 1 ? 0 : 1);
+  const quancheSharp = (buttonType, type) => {
+    if(buttonType){
+      setSelectedTeam(type)
     }else{
-      setIsQuanche(isQuanche === 2 ? 0 : 2);
+      if(type){
+        setIsQuanche(isQuanche === 1 ? 0 : 1);
+      }else{
+        setIsQuanche(isQuanche === 2 ? 0 : 2);
+      }
     }
+
   };
   return (
     <View style={styles.buttonContainer}>
       <Buttons
         title={type ? teams[0] : "-"}
         active={type ? selectedTeam === 0 : !!isQuanche}
-        onPress={() => type ? setSelectedTeam(0) : quancheSharp(true)}
+        onPress={() => quancheSharp(type, type ? 0 : true)}
       />
       <Buttons
         title={type ? teams[1] : "+"}
         active={type ? selectedTeam === 1 : isQuanche === 2}
-        onPress={type ? () => setSelectedTeam(1) : quancheSharp(false)}
+        onPress={() => quancheSharp(type, type ? 1 : false)}
       />
     </View>
   );
 };
+
 const mapStateToProps = ({ main: { team1, team2 } }) => ({
   team1,
   team2,

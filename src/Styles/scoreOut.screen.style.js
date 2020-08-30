@@ -1,7 +1,4 @@
-import {
-  Dimensions,
-  StyleSheet,
-} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import { COLORS } from '../UI';
 
@@ -9,7 +6,7 @@ const { height } = Dimensions.get("window");
 
 export default StyleSheet.create({
   container: {
-    height
+    height,
   },
   buttons: {
     justifyContent: "space-around",

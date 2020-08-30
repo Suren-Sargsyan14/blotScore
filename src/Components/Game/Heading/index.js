@@ -1,14 +1,10 @@
 import React  from 'react';
-import {
-  View,
-} from 'react-native';
 import { connect } from 'react-redux';
+import { View } from 'react-native';
 
 import { TextRegular } from '../../../UI';
 
-import {
-  setWhichTeam,
-} from '../../../Actions/main';
+import { setWhichTeam } from '../../../Actions/main';
 
 import TeamName from '../TeamName';
 
@@ -20,7 +16,6 @@ const Heading = ({
   setWhichTeam,
   setModalNameVisible,
 }) => {
-
   const openNameModal = team => {
     setModalNameVisible(true);
     setWhichTeam(team);
@@ -56,6 +51,7 @@ const mapStateToProps = ({ main: { team1, team2 } }) => ({
   team1,
   team2,
 });
+
 const mapDispatchToProps = dispatch => ({
   setWhichTeam: whichTeam => dispatch(setWhichTeam(whichTeam)),
 });

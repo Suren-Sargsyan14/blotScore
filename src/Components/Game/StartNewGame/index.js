@@ -1,11 +1,17 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { TouchableOpacity } from 'react-native';
 
 import styles from './startNewGame.style';
 
 import { TextBold } from '../../../UI';
-import { setTeam1, setTeam2, setTeamScoreOut1, setTeamScoreOut2, setTeamVs } from "../../../Actions/main";
+import {
+  setTeam1,
+  setTeam2,
+  setTeamVs,
+  setTeamScoreOut1,
+  setTeamScoreOut2
+} from '../../../Actions/main';
 
 const StartNewGame = ({
   setTeam1,
@@ -35,7 +41,6 @@ const StartNewGame = ({
     </TouchableOpacity>
   );
 };
-const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   setTeam1: team1 => dispatch(setTeam1(team1)),
@@ -45,4 +50,4 @@ const mapDispatchToProps = dispatch => ({
   setTeamScoreOut2: teamScoreOut2 => dispatch(setTeamScoreOut2(teamScoreOut2)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(StartNewGame);
+export default connect(null, mapDispatchToProps)(StartNewGame);

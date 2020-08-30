@@ -1,6 +1,6 @@
 import React from 'react';
-import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import { FlatList } from 'react-native';
 
 import {
   setSelectedLessValue,
@@ -20,7 +20,6 @@ const Content = ({
   setSelectedFiftyValue,
   setSelectedHundredValue,
 }) => {
-
   const scoreOutArray = [
     {
       cardCount: 3,

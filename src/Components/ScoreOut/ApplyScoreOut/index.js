@@ -1,6 +1,6 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { TouchableOpacity } from 'react-native';
 
 import { TextBold } from '../../../UI';
 import { setTeamScoreOut1, setTeamScoreOut2 } from '../../../Actions/main';

@@ -42,33 +42,38 @@ const TeamScoreModal = ({
   setSelected4PaperValue,
   setSelectedHundredValue,
 }) => {
-
   let teams = [team1, team2];
   const [inputValue, setInputValue] = useState("0");
+
+  const applyModal = () => {
+    let newScores = mathFunction({
+      teamVs,
+      whichTeam,
+      inputValue,
+      teamScoreOut1,
+      teamScoreOut2,
+    });
+
+    setTeamScoreOut1([]);
+    setTeamScoreOut2([]);
+    setInputValue("");
+    setModalScoreVisible(!modalScoreVisible);
+    setSelectedLessValue({ team: null, count: 0 });
+    setSelectedBlotValue({ team: null, count: 0 });
+    setSelectedFiftyValue({ team: null, count: 0 });
+    setSelected4PaperValue({ team: null, count: [] });
+    setSelectedHundredValue({ team: null, count: 0 });
+    teamVs[teamVs.length - 1].teamScore1 = newScores[0];
+    teamVs[teamVs.length - 1].teamScore2 = newScores[1];
+    setTeamVs([...teamVs, {team: -1, x: 0, suit: -1, kaput: false, quanche: false, sharp: false, teamScore1: 0, teamScore2: 0 }]);
+  };
 
   return (
     <AppModal
       setModalVisible={setModalScoreVisible}
       modalVisible={modalScoreVisible}
       title={`Գրեք "${teams[whichTeam]}" թիմի միավորների քանակը`}
-      onPress={() => mathFunction({
-        teamVs,
-        setTeamVs,
-        whichTeam,
-        inputValue,
-        modalScoreVisible,
-        setInputValue,
-        teamScoreOut1,
-        teamScoreOut2,
-        setModalScoreVisible,
-        setTeamScoreOut1,
-        setTeamScoreOut2,
-        setSelectedLessValue,
-        setSelectedBlotValue,
-        setSelectedFiftyValue,
-        setSelected4PaperValue,
-        setSelectedHundredValue,
-      })}
+      onPress={applyModal}
     >
       <TextInput
         keyboardType='numeric'
@@ -90,6 +95,7 @@ const mapStateToProps = ({ main: { whichTeam, team1, team2, teamVs, teamScoreOut
   teamScoreOut2,
   modalScoreVisible
 });
+
 const mapDispatchToProps = dispatch => ({
   setTeam1: team1 => dispatch(setTeam1(team1)),
   setTeam2: team2 => dispatch(setTeam2(team2)),

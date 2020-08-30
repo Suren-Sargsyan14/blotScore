@@ -1,11 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
   FlatList,
   TouchableOpacity
 } from 'react-native';
-import { connect } from 'react-redux';
 
 import {
   setCardCount,
@@ -26,7 +26,6 @@ const Paper4 = ({
   selectedHundredValue,
   setSelected4PaperValue,
 }) => {
-
   const scoreOutArray = ["9", "10", "J", "Q", "K", "A"];
   const selectedTeamArray = [
     selectedLessValue,
@@ -63,6 +62,7 @@ const Paper4 = ({
       });
     }
   };
+
   return (selectedTeamArray.some(v => v.team === whichTeam) || selectedTeamArray.every(v => v.team === null)) && (
     <View style={styles.paperContainer}>
       <Text style={styles.scoreOut}>4 Թուղթ</Text>
@@ -82,14 +82,16 @@ const Paper4 = ({
   );
 };
 
-const mapStateToProps = ({ scoreOut: {
-  whichTeam,
-  cardCount,
-  selectedLessValue,
-  selectedFiftyValue,
-  selected4PaperValue,
-  selectedHundredValue,
-} }) => ({
+const mapStateToProps = ({
+  scoreOut: {
+    whichTeam,
+    cardCount,
+    selectedLessValue,
+    selectedFiftyValue,
+    selected4PaperValue,
+    selectedHundredValue,
+  }
+}) => ({
   whichTeam,
   cardCount,
   selectedLessValue,

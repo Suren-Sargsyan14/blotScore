@@ -3,8 +3,8 @@ import { View } from 'react-native';
 
 import styles from '../teamScores.style';
 
-import TeamScore from './TeamScore';
 import TeamX from './TeamX';
+import TeamScore from './TeamScore';
 
 const TeamScoresContainer = ({
   openTeamScoreModal,

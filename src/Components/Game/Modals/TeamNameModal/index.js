@@ -46,6 +46,7 @@ const mapStateToProps = ({ main: { whichTeam, modalNameVisible } }) => ({
   whichTeam,
   modalNameVisible,
 });
+
 const mapDispatchToProps = dispatch => ({
   setTeam1: team1 => dispatch(setTeam1(team1)),
   setTeam2: team2 => dispatch(setTeam2(team2)),
